@@ -1,0 +1,58 @@
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  height: 200vh;
+  padding: 2em;
+  overflow-x: hidden;
+}
+
+.carouselcontainer {
+  width: 100dvw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.carouselarrows {
+  height: 100%;
+  flex-grow: 1;
+  margin: 1em;
+  cursor: pointer;
+}
+
+.carousel {
+  width: 90svw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 20%,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 20%,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.carouseldiv {
+  max-width: 350px;
+}
+
+.carouselimg {
+  width: 350px;
+  height: 50vh;
+  user-select: none;
+}

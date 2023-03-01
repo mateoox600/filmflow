@@ -1,0 +1,23 @@
+.searchbox {
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1em;
+  padding: 1em;
+}
+
+.searchbar {
+  width: 25vw;
+  height: 40px;
+  font-size: 24px;
+  padding: 0 10px;
+  border: 1px solid white;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

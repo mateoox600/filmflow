@@ -1,0 +1,41 @@
+.navbar {
+  width: 100dvw;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #16161d;
+  border-bottom: 2px solid;
+  border-width: 1px;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to left, #33B0CD, #EB4CAE); /* Add the purple at 50% ? */
+}
+
+.logo {
+  height: 38px;
+  padding-left: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  padding-right: 20px;
+}
+
+.search {
+  cursor: pointer;
+}
+
+.favorites {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+#EB4CAE
+#8754DB
+#33B0CD
+*/
