@@ -1,0 +1,72 @@
+
+.seasons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.season {
+    flex-grow: 1;   
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.season[open] {
+    flex-basis: 100%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.header {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header div {
+    display: flex;
+    flex-direction: column;
+}
+
+.header img {
+    width: 15vw;
+}
+
+.header p {
+    display: none;
+    font-size: 1.1em;
+}
+
+.season[open] .header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2em;
+}
+
+.season[open] .header h2 {
+    padding: 1em;
+    font-size: 2em;
+}
+
+.season[open] .header img {
+    width: 20vw;
+}
+
+.season[open] .header p {
+    display: block;
+}
+
+.episodes {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.episode {
+    flex-grow: 1;
+    flex-basis: 45%;
+}

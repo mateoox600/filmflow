@@ -1,0 +1,54 @@
+
+.resultspage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3em;
+  padding: 2em;
+  overflow-x: hidden;
+}
+
+.head {
+  color: #bbb;
+}
+
+.searching {
+  color: #EB4CAE;
+  font-size: 1.25em;
+}
+
+.results {
+  width: 65vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.result {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.resultimg {
+  object-fit: cover;
+  object-position: center center;
+  height: 300px;
+  min-width: 215px;
+}
+
+.resulttext {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+}
+
+.resulttitle {
+  font-size: 1.75em;
+  color: #8754DB;
+}
+
+.resultsummary {
+  font-size: 1.1em;
+}

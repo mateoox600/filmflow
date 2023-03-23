@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
-import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
+import { useState, useEffect, TouchEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/all';
+
+import emptyImage from '../assets/empty_image_250_375.png';
 
 import styles from './Home.module.css';
 
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 function Home() {
 
-  const [ carouselElements, setCarouselElements ] = useState([]);
+  const navigate = useNavigate();
+
+  const [ carouselElements, setCarouselElements ] = useState<any[]>([]);
   const [ carouselScroll, setCarouselScroll ] = useState(0);
 
   useEffect(() => {
@@ -17,26 +22,47 @@ function Home() {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleClick = (n) => {
+  const handleClick = (n: number) => {
     if(n == 1 && carouselScroll >= 4) return;
-    if(n == -1 && carouselScroll <= -4) return;
+    if(n == -1 && carouselScroll <= -5) return;
     setCarouselScroll((current) => current + n);
+  };
+
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50; 
+
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if(isLeftSwipe) handleClick(1);
+    else if(isRightSwipe) handleClick(-1);
   };
 
   return (
     <div className={ styles.homepage }>
       <SearchBar />
+      <h2>Dive into the endless world of entertainment: find your next favorite series with FilmFlow.</h2>
       <div className={ styles.carouselcontainer }>
-        <SlArrowLeft size="2.5em" className={ styles.carouselarrows } onClick={ () => handleClick(-1) } />
-        <div className={ styles.carousel }>
-          {
-            carouselElements.map((e, idx) => ( <div key={ idx } className={ styles.carouseldiv } style={{ transform: `translateX(${carouselScroll * -100}%)` }}>
-              <img src={ e.show?.image?.original ?? e.show?.image?.medium } className={ styles.carouselimg } />
-            </div> ))
-          }
+        <SlArrowLeft size="4em" className={ styles.carouselarrows } onClick={ () => handleClick(-1) } />
+        <div className={ styles.carousel } onTouchStart={ onTouchStart } onTouchMove={ onTouchMove } onTouchEnd={ onTouchEnd }>
+          <img src={ carouselElements[carouselScroll + 5 - 1]?.show?.image?.medium ?? emptyImage } className={ styles.carouselimg } onClick={ () => handleClick(-1) } />
+          <img src={ carouselElements[carouselScroll + 5]?.show?.image?.medium ?? '' } className={ styles.carouselmainimg } onClick={ () => navigate(`/show/${carouselElements[carouselScroll + 5]?.show?.id}`) } />
+          <img src={ carouselElements[carouselScroll + 5 + 1]?.show?.image?.medium ?? emptyImage } className={ styles.carouselimg } onClick={ () => handleClick(1) }/>
         </div>
-        <SlArrowRight size="2.5em" className={ styles.carouselarrows } onClick={ () => handleClick(1) } />
+        <SlArrowRight size="4em" className={ styles.carouselarrows } onClick={ () => handleClick(1) } />
       </div>
+      <p className={ styles.seriesummary } dangerouslySetInnerHTML={{ __html:  carouselElements[carouselScroll + 5]?.show?.summary ?? '' }}></p>
     </div>
   );
 }

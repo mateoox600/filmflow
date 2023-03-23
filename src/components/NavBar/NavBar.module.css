@@ -9,7 +9,13 @@
   border-bottom: 2px solid;
   border-width: 1px;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to left, #33B0CD, #EB4CAE); /* Add the purple at 50% ? */
+  border-image-source: linear-gradient(to left, #33B0CD, #EB4CAE);
+}
+
+.logolink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {

@@ -6,8 +6,27 @@
   border: none;
   outline: none;
   color: white;
+  font-family: "Armata-Regular";
 }
 
 body {
   background-color: #16161d;
+}
+
+b {
+  color: #EB4CAE;
+}
+
+@font-face {
+  font-family: "Armata-Regular";
+  src: local("Armata-Regular"),
+    url("./assets/fonts/Armata-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Anton-Regular";
+  src: local("Anton-Regular"),
+    url("./assets/fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: normal;
 }

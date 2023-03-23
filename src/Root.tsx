@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import styles from './Root.module.css';
 
-import NavBar from './NavBar/NavBar';
-import SearchBar from './SearchBar/SearchBar';
+import NavBar from './components/NavBar/NavBar';
+import SearchBar from './components/SearchBar/SearchBar';
 
 function Root() {
 
@@ -12,10 +12,12 @@ function Root() {
 
   const [ searching, setSearching ] = useState(false);
 
-  const closeSearch = (e) => {
-    if(e.target.id !== 'search-box') return;
+  const closeSearch = (e: MouseEvent<HTMLDivElement>) => {
+    if((e.target as HTMLDivElement).id !== 'search-box') return;
     setSearching(false);
   };
+
+  useEffect(() => setSearching(false), [ location ]);
 
   return (
     <>
